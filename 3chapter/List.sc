@@ -44,6 +44,7 @@ object List {
   def append_foldRight[A](l: List[A], r: List[A]): List[A] =
     foldRight(l, r)(Cons(_, _))
 
+  @scala.annotation.tailrec
   def drop[A](as: List[A], n: Int): List[A] =
   {
     if (n > 0)
@@ -55,6 +56,7 @@ object List {
       as
   }
 
+  @scala.annotation.tailrec
   def dropWhile[A](as: List[A])(f: A => Boolean): List[A] = as match {
     case Cons(h, t) if f(h) => dropWhile(t)(f)
     case _ => as
@@ -65,6 +67,7 @@ object List {
     case Cons(_, xs) => Cons(h, xs)
   }
 
+  @scala.annotation.tailrec
   def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B =
     l match {
       case Nil => z
